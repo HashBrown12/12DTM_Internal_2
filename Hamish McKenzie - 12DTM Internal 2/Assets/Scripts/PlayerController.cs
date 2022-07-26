@@ -29,21 +29,32 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed);
 
         // if statement to make the player jump when input is recieved
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
-        
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
+            playerRb.velocity = new Vector3(0, 0, 5);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, pathOne);
+            playerRb.velocity = new Vector3(0, 0, -5);
         }
+
+        if(transform.position.z < pathOne)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, pathOne); 
+        }
+
+        if(transform.position.z > pathTwo)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
+        }
+
     }
 
     // a function which deals with all of the collisions in the game
@@ -55,3 +66,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
