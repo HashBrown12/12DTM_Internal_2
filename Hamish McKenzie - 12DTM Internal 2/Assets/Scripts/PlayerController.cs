@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     {
         // code that recieves horizontal inputs and moves the player accordingly
         horizontalInput = Input.GetAxis("Horizontal");
-        // Vector 3 forward is used here because I had to rotate the player model
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed);
 
         // if statement to make the player jump when input is recieved
