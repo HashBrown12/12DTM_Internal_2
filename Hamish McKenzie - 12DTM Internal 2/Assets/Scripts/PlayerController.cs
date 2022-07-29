@@ -63,6 +63,16 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
         }
+
+        if (collision.gameObject.CompareTag("Path_1_Obstacle"))
+        {
+            playerRb.velocity = new Vector3(0, 0, 5);
+        }
+
+        if (collision.gameObject.CompareTag("Path_2_Obstacle"))
+        {
+            playerRb.velocity = new Vector3(0, 0, -5);
+        }
     }
 }
 
