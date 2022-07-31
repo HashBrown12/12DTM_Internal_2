@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // a function which deals with all of the collisions in the game
+    // a function which deals with all of the for the player
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
