@@ -18,7 +18,7 @@ public class PathSwitcher : MonoBehaviour
 
     }
 
-    private void PathTwoClear(Collision collision)
+    public void PathTwoClear(Collision collision)
     {
         if (collision.gameObject.CompareTag("Path_2_Obstacle"))
         {
