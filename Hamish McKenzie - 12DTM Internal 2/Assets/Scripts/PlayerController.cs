@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // variables
-    PathSwitcher pathSwitcher;
-    public GameObject pathSwitcher2;
+    public PathSwitcher pathSwitcher;
     private Rigidbody playerRb;
     public float horizontalInput;
     public float movementSpeed = 8.0f;
@@ -14,21 +13,21 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public float pathOne = -1.0f;
     public float pathTwo = 1.25f;
+    // public GameObject pathSwitcherTwo;
 
     // Start is called before the first frame update
     void Start()
     {
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
+        // pathSwitcherTwo = GameObject.Find("Path 2 Empty");
+        // pathSwitcher = pathSwitcherTwo.GetComponent<PathSwitcher>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        pathSwitcher2 = GameObject.Find("Path 2 Empty");
-        pathSwitcher = pathSwitcher2.GetComponent<PathSwitcher>();
-
         // code that recieves horizontal inputs and moves the player accordingly
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed);
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && PathSwitcher.pathTwoClear = true)
+        if (Input.GetKeyDown(KeyCode.UpArrow)&& PathSwitcher.pathTwoClear = true)
         {
             playerRb.velocity = new Vector3(0, 0, 5);
         }

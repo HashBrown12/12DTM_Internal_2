@@ -252,12 +252,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948ee3c9478251b4f999c3c5965fefc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathSwitcher: {fileID: 1096018693}
   horizontalInput: 0
   movementSpeed: 8
   jumpForce: 7
   isOnGround: 1
   pathOne: -1
   pathTwo: 1.25
+  pathSwitcherTwo: {fileID: 1096018688}
 --- !u!1 &695239433
 GameObject:
   m_ObjectHideFlags: 0
