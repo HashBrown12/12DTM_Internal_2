@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && pathTwoClear = true)
         {
             playerRb.velocity = new Vector3(0, 0, 5);
         }
@@ -69,9 +70,9 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = new Vector3(0, 0, 5);
         }
 
-        if (collision.gameObject.CompareTag("Path_2_Obstacle"))
+        // if (collision.gameObject.CompareTag("Path_2_Obstacle"))
         {
-            playerRb.velocity = new Vector3(0, 0, -5);
+           // playerRb.velocity = new Vector3(0, 0, -5);
         }
     }
 }

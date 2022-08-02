@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PathSwitcher : MonoBehaviour
 {
-    public bool pathOneClear = true;
+    public bool pathTwoClear = true;
+    private Rigidbody pathTwoRb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pathTwoRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(collision.gameObject.CompareTag("Path_1_Obstacle"))
-        {
 
+    }
+
+    private void PathTwoClear(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Path_2_Obstacle"))
+        {
+            pathTwoClear = false;
         }
     }
 }
