@@ -5,7 +5,8 @@ using UnityEngine;
 public class PathSwitcher : MonoBehaviour
 {
     public bool pathTwoClear = true;
-    private Rigidbody pathTwoRb;
+    public Rigidbody pathTwoRb;
+
     // Start is called before the first frame update
     void Start()
     {
