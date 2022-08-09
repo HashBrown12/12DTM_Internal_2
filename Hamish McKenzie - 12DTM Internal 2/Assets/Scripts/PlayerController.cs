@@ -12,12 +12,17 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public float pathOne = -1.0f;
     public float pathTwo = 1.25f;
-    public PathSwitcher pathSwitcher;
+    PathSwitcher pathSwitcher;
+    GameObject pathTwoCollisions;
     // Start is called before the first frame update
     void Start()
     {
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
+
+        pathTwoCollisions = GameObject.Find("Path 2 Empty");
+
+        pathSwitcher = pathTwoCollisions.GetComponent<PathSwitcher>();
     }
     
     // Update is called once per frame
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && pathSwitcher.pathTwoClear)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerRb.velocity = new Vector3(0, 0, 5);
         }
