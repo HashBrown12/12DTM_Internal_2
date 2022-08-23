@@ -7,7 +7,8 @@ TagManager:
   - Ground
   - Path_1_Obstacle
   - Path_2_Obstacle
-  - Path_2_Collisions
+  - Barrier_1
+  - Barrier_2
   layers:
   - Default
   - TransparentFX
