@@ -35,12 +35,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            playerRb.velocity = new Vector3(0, 0, 5);
+            playerRb.velocity = new Vector3(0, 0, 6);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            playerRb.velocity = new Vector3(0, 0, -5);
+            playerRb.velocity = new Vector3(0, 0, -6);
         }
 
         if(transform.position.z < pathOne)
@@ -65,12 +65,12 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Barrier_1"))
         {
-            playerRb.velocity = new Vector3(0, 0, -5);
+            playerRb.velocity = new Vector3(0, 0, -6);
         }
 
         if (collision.gameObject.CompareTag("Barrier_2"))
         {
-            playerRb.velocity = new Vector3(0, 0, 5);
+            playerRb.velocity = new Vector3(0, 0, 6);
         }
     }
 }
