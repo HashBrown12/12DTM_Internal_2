@@ -12,11 +12,15 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public float pathOne = -1.0f;
     public float pathTwo = 1.25f;
+    public bool hasPowerup;
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
     // Update is called once per frame
@@ -71,6 +75,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Barrier_2"))
         {
             playerRb.velocity = new Vector3(0, 0, 6);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            hasPowerup = true;
+            Destroy(other.gameObject);
+            gameManager.UpdateHealth(1);
         }
     }
 }

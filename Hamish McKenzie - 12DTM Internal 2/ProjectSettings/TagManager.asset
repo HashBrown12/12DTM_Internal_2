@@ -9,6 +9,7 @@ TagManager:
   - Path_2_Obstacle
   - Barrier_1
   - Barrier_2
+  - PowerUp
   layers:
   - Default
   - TransparentFX
