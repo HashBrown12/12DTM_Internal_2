@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
         }
 
+        if(gameManager.playerHealth == 0)
+        {
+            enabled = false;
+        }
+
     }
 
     // a function which deals with all of the for the player
@@ -65,6 +70,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+        }
+
+        if (collision.gameObject.CompareTag("Path_2_Obstacle"))
+        {
+            gameManager.UpdateHealth(-1);
         }
 
         if (collision.gameObject.CompareTag("Barrier_1"))

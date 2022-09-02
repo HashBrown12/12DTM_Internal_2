@@ -6,7 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // Variables
-    private int playerHealth;
+    public int playerHealth;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
     // Start is called before the first frame update
@@ -14,13 +14,15 @@ public class GameManager : MonoBehaviour
     {
         playerHealth = 1;
         UpdateHealth(0);
-        gameOverText.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(playerHealth == 0)
+        {
+            gameOverText.gameObject.SetActive(true);
+        }
     }
 
     public void UpdateHealth(int healthToAdd)
