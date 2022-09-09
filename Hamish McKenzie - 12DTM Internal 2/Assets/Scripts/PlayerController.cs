@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
         }
 
+        // an if statement to disable the player controller script once the player has run out of HP
         if(gameManager.playerHealth == 0)
         {
             enabled = false;
