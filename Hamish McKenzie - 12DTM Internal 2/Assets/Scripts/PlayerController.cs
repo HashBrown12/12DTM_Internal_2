@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
 
-        if (collision.gameObject.CompareTag("Path_2_Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             gameManager.UpdateHealth(-1);
         }

@@ -10,6 +10,7 @@ TagManager:
   - Barrier_1
   - Barrier_2
   - PowerUp
+  - Obstacle
   layers:
   - Default
   - TransparentFX
