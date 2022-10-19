@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
 
+        // Finding the game manager script so it can communicate with this one
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
@@ -68,21 +69,25 @@ public class PlayerController : MonoBehaviour
     // a function which deals with all of the for the player
     private void OnCollisionEnter(Collision collision)
     {
+        // If statement to tell if the player is on the ground and if they are allowed to jump
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
         }
 
+        // If statement to update player health when they collide with an obstacle
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             gameManager.UpdateHealth(-1);
         }
 
+        // 2 If statements to send the player back to the other path if they collide with the side of an object
         if (collision.gameObject.CompareTag("Barrier_1"))
         {
             playerRb.velocity = new Vector3(0, 0, -6);
         }
 
+        // ^^
         if (collision.gameObject.CompareTag("Barrier_2"))
         {
             playerRb.velocity = new Vector3(0, 0, 6);
