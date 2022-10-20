@@ -12,7 +12,10 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public float pathOne = -1.0f;
     public float pathTwo = 1.25f;
+    public float leftBarrier = -5.0f;
+    public float rightBarrier = 95.0f;
     public bool hasPowerup;
+    public bool doubleJump;
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -32,11 +35,21 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * movementSpeed);
 
         // if statement to make the player jump when input is recieved
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
+            if (isOnGround)
+            {
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isOnGround = false;
+            }
+
+            else if(!isOnGround && doubleJump)
+            {
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                doubleJump = false;
+            }
         }
+
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -58,8 +71,18 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
         }
 
+        if(transform.position.x < leftBarrier)
+        {
+            transform.position = new Vector3(leftBarrier, transform.position.y, transform.position.z);
+        }
+
+        if(transform.position.x > rightBarrier)
+        {
+            transform.position = new Vector3(rightBarrier, transform.position.y, transform.position.z);
+        }
+
         // an if statement to disable the player controller script once the player has run out of HP
-        if(gameManager.playerHealth == 0)
+        if(gameManager.playerHealth <= 0)
         {
             enabled = false;
         }
@@ -91,6 +114,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Barrier_2"))
         {
             playerRb.velocity = new Vector3(0, 0, 6);
+        }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            gameManager.YouWin(true);
+            enabled = false;
         }
     }
 

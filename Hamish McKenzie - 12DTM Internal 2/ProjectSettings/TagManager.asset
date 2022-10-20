@@ -11,6 +11,7 @@ TagManager:
   - Barrier_2
   - PowerUp
   - Obstacle
+  - Double_Jump
   layers:
   - Default
   - TransparentFX
