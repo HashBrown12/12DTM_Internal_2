@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI youWinText;
     public TextMeshProUGUI speedText;
     private PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Setting the player health to one before the game begins
         playerHealth = 1;
         UpdateHealth(0);
 
@@ -31,7 +33,8 @@ public class GameManager : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
         }
 
-        // Code that references the player's horizontal speed to display it
+        // Code that references the player's horizontal speed from the PlayerController script
+        // to display it as a percentage
         speedText.text = "Speed: " + playerController.horizontalInput * 100 + "%";
     }
 

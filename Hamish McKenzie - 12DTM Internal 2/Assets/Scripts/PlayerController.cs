@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // variables
+    // Variables
     private Rigidbody playerRb;
     public float horizontalInput;
     public float movementSpeed = 8.0f;
@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup;
     public bool doubleJump;
     private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         // Getting the component for the player rigidbody
         playerRb = GetComponent<Rigidbody>();
 
-        // Finding the game manager script so it can communicate with this one
+        // Finding the GameManager script so it can communicate with this one
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
@@ -42,40 +43,39 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
             }
-
-            else if(!isOnGround && doubleJump)
-            {
-                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                doubleJump = false;
-            }
         }
 
-
+        // If statement to make the player switch between paths
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             playerRb.velocity = new Vector3(0, 0, 6);
         }
 
+        // ^^^
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerRb.velocity = new Vector3(0, 0, -6);
         }
 
+        // If statement to make sure the player can't go off the sides of the path when switching
         if(transform.position.z < pathOne)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, pathOne); 
         }
 
+        // ^^^
         if(transform.position.z > pathTwo)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, pathTwo);
         }
 
+        // If statement settings barriers at the beginning and end of the level
         if(transform.position.x < leftBarrier)
         {
             transform.position = new Vector3(leftBarrier, transform.position.y, transform.position.z);
         }
 
+        // ^^^
         if(transform.position.x > rightBarrier)
         {
             transform.position = new Vector3(rightBarrier, transform.position.y, transform.position.z);
@@ -104,18 +104,20 @@ public class PlayerController : MonoBehaviour
             gameManager.UpdateHealth(-1);
         }
 
-        // 2 If statements to send the player back to the other path if they collide with the side of an object
+        // If statements to send the player back to the other path if they collide with the side of an object
         if (collision.gameObject.CompareTag("Barrier_1"))
         {
             playerRb.velocity = new Vector3(0, 0, -6);
         }
 
-        // ^^
+        // ^^^
         if (collision.gameObject.CompareTag("Barrier_2"))
         {
             playerRb.velocity = new Vector3(0, 0, 6);
         }
 
+        // If statement to disable the PlayerController script when the player reaches the end
+        // and enable the you win text in the GameManager script.
         if (collision.gameObject.CompareTag("Finish"))
         {
             gameManager.YouWin(true);
@@ -123,6 +125,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // A function which updates the player health when they get the powerup
+    // and destroys the powerup on impact
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PowerUp"))
