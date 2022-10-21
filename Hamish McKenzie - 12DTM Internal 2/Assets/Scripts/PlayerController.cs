@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.UpdateHealth(-1);
         }
-
+            
         // If statements to send the player back to the other path if they collide with the side of an object
         if (collision.gameObject.CompareTag("Barrier_1"))
         {
